@@ -7,6 +7,7 @@
 
   <body>
     <h1>Writer's Blo...g</h1>
+    <h3>Click <a href="/">here</a> to return to the homepage.</h3>
     <p>Enter a new post:</p>
 
     <form method="post">
@@ -20,19 +21,10 @@
           <textarea name="post">{{post}}</textarea>
       </label>
 
-      <div class="error">{{error}}</div>
+      <div style="color: blue" class="error">{{error}}</div>
 
       <input type="submit">
     </form>
-
-        <hr>
-
-        {% for post in posts %}
-          <div class="post">
-            <div class="post-title">{{post.title}}</div>
-            <pre class="post-body">{{post.post}}</pre>
-         </div>
-        {% endfor %}
 
   </body>
 </html>

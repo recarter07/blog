@@ -41,22 +41,24 @@ class Post(db.Model):
     post = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
 
+
 class Homepage(Handler):
-    def render_posts(self, title="", posts="")
-        posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC LIMIT 5")
-        self.render("posts.html", title=title, posts=posts)
+#    def render_posts(self, title="", posts="")
+#        posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC LIMIT 5")
+#        self.render("posts.html", title=title, posts=posts)
+
+#    def get(self):
+#        self.render_posts()
 
     def get(self):
-        self.render_posts()
+        posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC LIMIT 5")
+        self.render("posts.html", posts=posts)
 
-    def post(self):
+#    def post(self):
+#        self.get()
 
 
-
-# separate render_front into new Handler class
-#   so that it doesn't render old posts on "make new post" page
-# will require making a new html form for new page "old posts directory"/homepg
-class MainHandler(Handler):
+class NewPost(Handler):
     def render_front(self, title="", post="", error=""):
         self.render("front.html", title=title, post=post, error=error)
 
@@ -79,5 +81,5 @@ class MainHandler(Handler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', Homepage), ('/new', NewPost)
 ], debug=True)

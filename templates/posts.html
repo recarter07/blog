@@ -3,17 +3,27 @@
 <html>
   <head>
     <title>Blog Posts</title>
+    <link
+        type="text/css"
+        rel="stylesheet"
+        href="posts_styles.css"
+    />
   </head>
 
   <body>
-    <h1>Writer's Blo...g Posts</h1>
+    <h1>Writer's Blo...g</h1>
 
+    <h3>Click <a href="/new">here</a> to make a new post.</h3>
+
+    <form>
+      <h4>Previous Posts:</h4>
     {% for post in posts %}
       <div class="post">
         <div class="post-title">{{post.title}}</div>
         <pre class="post-body">{{post.post}}</pre>
      </div>
     {% endfor %}
+    </form>
 
   </body>
 </html>
