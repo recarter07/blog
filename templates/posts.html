@@ -3,6 +3,9 @@
 <html>
   <head>
     <title>Blog Posts</title>
+
+
+
     <link
         type="text/css"
         rel="stylesheet"
@@ -19,7 +22,7 @@
       <h4>Previous Posts:</h4>
     {% for post in posts %}
       <div class="post">
-        <div class="post-title">{{post.title}}</div>
+        <div class="post-title"><a href='/view/{{post.key().id()}}'>{{post.title}}</a></div>
         <pre class="post-body">{{post.post}}</pre>
      </div>
     {% endfor %}

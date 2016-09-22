@@ -43,9 +43,9 @@ class Post(db.Model):
 
 
 class Homepage(Handler):
-#    def render_posts(self, title="", posts="")
+#    def render_posts(self, posts="")
 #        posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC LIMIT 5")
-#        self.render("posts.html", title=title, posts=posts)
+#        self.render("posts.html", posts=posts)
 
 #    def get(self):
 #        self.render_posts()
@@ -53,9 +53,6 @@ class Homepage(Handler):
     def get(self):
         posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC LIMIT 5")
         self.render("posts.html", posts=posts)
-
-#    def post(self):
-#        self.get()
 
 
 class NewPost(Handler):
@@ -80,6 +77,64 @@ class NewPost(Handler):
             self.render_front(title, post, error)
 
 
+class ViewPostHandler(Handler):
+#    def get(self, post_id):
+#        post = Post.get_by_id(int(post_id))
+
+#    def render_view(self, title="", post=""):
+#        post = Post.get_by_id(int(post_id))
+#        self.render("viewpost.html", title=title, post=post)
+
+#    def get(self):
+#        self.render_view()
+
+#    def get(self):
+#        self.response.write("Hiya")
+
+#        if there is a post with that id, render the single post form
+#    else: produce this helpful error message: there is no post with that id
+
+    # This works (below), just needs some formatting
+    def get(self, post_id):
+        post = Post.get_by_id(int(post_id))
+        wpost = str(post.title) + str(post.post)
+        self.response.write(wpost)
+
+
+#class SinglePost(Handler):
+
+#        view = post.key().id()
+        # some code to handle the request - get(key) for id. obj
+        # but use ORM syntax rather than Gql syntax
+#        post_id = post.key().id()
+
+        # db Model Post:
+#        post = Post.get_by_id(int(post_id))
+#        view = post.key().id()
+#        self.response.write(view, post)
+
+#        self.response.write('%s' % int(post_id), str(post_id))
+
+        # below code is psuedocode:
+#        key = db.Key.from_path.('Model', int(id))
+#        viewpost = db.get(key)
+#        key = db.Key.from_path.('Post', int(post_id))
+#        view = db.get(key)
+
+#        self.response.write(key)
+        #viewpost = db.GqlQuery("SELECT * FROM Post WHERE id= "# single id")
+#        self.render("viewpost.html", viewpost=viewpost)
+
+
+
 app = webapp2.WSGIApplication([
-    ('/', Homepage), ('/new', NewPost)
+    ('/', Homepage),
+    ('/new', NewPost),
+    webapp2.Route('/view/<post_id:\d+>', ViewPostHandler)
 ], debug=True)
+
+# implement below route instead of view once get_id code is working
+#webapp2.Route('/<id:|d+>', ViewPostHandler)
+
+
+#/Users/Ruthie/blog/main.py
