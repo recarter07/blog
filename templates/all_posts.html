@@ -24,8 +24,8 @@
     <img src="http://www.ci.berkeley.ca.us/uploadedImages/Manager/Economic_Development/Pencil%20on%20paper%20-%20250.jpg"
     />
     <h3>Click <a href="/new">here</a> to make a new post.</h3>
+    <h3>Click <a href="/">here</a> to return to the homepage.</h3>
 
-    <!-- For long posts: only preview first 5 words, then follow with ... in preview -->
     <form>
       <h4>Previous Posts:</h4>
     {% for post in posts %}
@@ -35,8 +35,9 @@
      </div>
     {% endfor %}
 
-    <h3>Click <a href="/all">here</a> to view all past posts.</h3>
     </form>
+
+      <!-- Pagination on Homepage instead of this page? -->
 
   </body>
 </html>

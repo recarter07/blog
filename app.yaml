@@ -13,6 +13,8 @@ handlers:
   script: main.app
 - url: /css
   static_dir: css
+- url: /posts_styles.css
+  static_dir: css
 
 libraries:
 - name: webapp2

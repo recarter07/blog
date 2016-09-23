@@ -55,6 +55,12 @@ class Homepage(Handler):
         self.render("posts.html", posts=posts)
 
 
+class AllPosts(Handler):
+    def get(self):
+        posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+        self.render("all_posts.html", posts=posts)
+
+
 class NewPost(Handler):
     def render_front(self, title="", post="", error=""):
         self.render("front.html", title=title, post=post, error=error)
@@ -136,6 +142,7 @@ class ViewPostHandler(Handler):
 
 app = webapp2.WSGIApplication([
     ('/', Homepage),
+    ('/all', AllPosts),
     ('/new', NewPost),
     webapp2.Route('/view/<post_id:\d+>', ViewPostHandler)
 ], debug=True)
