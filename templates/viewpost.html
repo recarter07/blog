@@ -7,17 +7,19 @@
 
   <body>
     <h1>Writer's Blo...g</h1>
+    <img src="http://www.ci.berkeley.ca.us/uploadedImages/Manager/Economic_Development/Pencil%20on%20paper%20-%20250.jpg"
+    />
     <h3>Click <a href="/">here</a> to return to the homepage.</h3>
+    <h3>Click <a href="/new">here</a> to make a new post.</h3>
 
     <form>
-      <h4>Single Post</h4>
 
-      {% for post in posts %}
-        <div class="post">
+      {% block content %}
+
           <div class="post-title">{{post.title}}</div>
           <pre class="post-body">{{post.post}}</pre>
-       </div>
-      {% endfor %}
+
+      {% endblock %}
 
    </form>
 

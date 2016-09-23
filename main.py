@@ -70,7 +70,7 @@ class NewPost(Handler):
             a = Post(title = title, post = post)
             a.put()
 
-            self.redirect("/")
+            self.redirect("/view/%s" % a.key().id())
 
         else:
             error = "We need both a title and a post!"
@@ -78,8 +78,15 @@ class NewPost(Handler):
 
 
 class ViewPostHandler(Handler):
-#    def get(self, post_id):
-#        post = Post.get_by_id(int(post_id))
+    def get(self, post_id):
+        post = Post.get_by_id(int(post_id))
+#        self.render("viewpost.html", post=post)
+
+        if post:
+            self.render("viewpost.html", post=post)
+        else:
+            error = "No post by that id number."
+            self.response.write(error)
 
 #    def render_view(self, title="", post=""):
 #        post = Post.get_by_id(int(post_id))
@@ -95,10 +102,10 @@ class ViewPostHandler(Handler):
 #    else: produce this helpful error message: there is no post with that id
 
     # This works (below), just needs some formatting
-    def get(self, post_id):
-        post = Post.get_by_id(int(post_id))
-        wpost = str(post.title) + str(post.post)
-        self.response.write(wpost)
+#    def get(self, post_id):
+#        post = Post.get_by_id(int(post_id))
+#        wpost = str(post.title) + str("<div>") + str("...<div>...") + str("<div>") + str(post.post)
+#        self.response.write(wpost)
 
 
 #class SinglePost(Handler):
